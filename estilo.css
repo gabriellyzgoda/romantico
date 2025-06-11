@@ -1,100 +1,412 @@
 body {
-  margin: 0;
-  background-color: black;
-  height: 100vh;
-  overflow: hidden;
+    margin: 0;
+    background-color: black;
+    height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative; /* Make body a positioning context for absolute elements */
 }
 
+/* Ensure the main container 'fundo' allows content to flow */
 .fundo {
-  position: relative;
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    min-height: 100vh; /* Ensure it covers the whole viewport */
+    position: relative; /* Important for containing absolutely positioned children */
+    display: flex; /* Use flexbox for overall layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: flex-start; /* Alinha no topo para dar espaço para o carrossel e depois a seção de corações */
+    align-items: center; /* Center content horizontally */
 }
 
-.linha-central {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.carrossel-container {
-  position: relative;
-  z-index: 2;
-  width: 600px;
-  height: 400px;
-  overflow: hidden;
-  border: 10px solid white;
-  margin: 0 auto;
-  top: 50%;
-  transform: translateY(-50%);
-  box-sizing: border-box;
-}
-
-.carrossel {
-  display: flex;
-  width: calc(600px * 12);
-  animation: deslizar 36s infinite;
-}
-
-.carrossel img {
-  width: 600px;
-  height: 400px;
-  object-fit: cover;
-}
-
-/* Corações */
+/* Corações de fundo (red) - Positioned relative to .fundo */
 .coracao {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  transform: rotate(45deg);
-  animation: pulse 2s infinite;
-  z-index: 0;
+    position: absolute; /* Absolute positioning */
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    transform: rotate(45deg);
+    animation: pulse 2s infinite;
+    z-index: 0; /* Keep them in the background */
 }
 
 .coracao::before,
 .coracao::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
 }
 
 .coracao::before {
-  top: -10px;
-  left: 0;
+    top: -10px;
+    left: 0;
 }
 
 .coracao::after {
-  left: -10px;
-  top: 0;
+    left: -10px;
+    top: 0;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1) rotate(45deg); }
-  50% { transform: scale(1.3) rotate(45deg); }
+.linha-central {
+    position: absolute; /* Positioned relative to .fundo */
+    top: 50%; /* Center vertically on the page */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transform: translateY(-50%); /* Adjust for its own height */
+    z-index: 1;
+}
+
+.carrossel-container {
+    position: absolute; /* Positioned relative to .fundo */
+    z-index: 2; /* Ensure it's above the line and background hearts */
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    border: 10px solid white;
+    box-sizing: border-box;
+    top: 50%; /* Center vertically with the line */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for its own dimensions */
+    /* Remove margin-bottom here, position will handle spacing */
+}
+
+.carrossel {
+    display: flex;
+    width: calc(600px * 12);
+    animation: deslizar 36s infinite;
+}
+
+.carrossel img {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
 }
 
 /* Carrossel animation */
 @keyframes deslizar {
-  0% { transform: translateX(0); }
-  8.33% { transform: translateX(-600px); }
-  16.66% { transform: translateX(-1200px); }
-  25% { transform: translateX(-1800px); }
-  33.33% { transform: translateX(-2400px); }
-  41.66% { transform: translateX(-3000px); }
-  50% { transform: translateX(-3600px); }
-  58.33% { transform: translateX(-4200px); }
-  66.66% { transform: translateX(-4800px); }
-  75% { transform: translateX(-5400px); }
-  83.33% { transform: translateX(-6000px); }
-  91.66% { transform: translateX(-6600px); }
-  100% { transform: translateX(0); }
+    0% { transform: translateX(0); }
+    8.33% { transform: translateX(-600px); }
+    16.66% { transform: translateX(-1200px); }
+    25% { transform: translateX(-1800px); }
+    33.33% { transform: translateX(-2400px); }
+    41.66% { transform: translateX(-3000px); }
+    50% { transform: translateX(-3600px); }
+    58.33% { transform: translateX(-4200px); }
+    66.66% { transform: translateX(-4800px); }
+    75% { transform: translateX(-5400px); }
+    83.33% { transform: translateX(-6000px); }
+    91.66% { transform: translateX(-6600px); }
+    100% { transform: translateX(0); }
+}
+
+/* Animation for background hearts */
+@keyframes pulse {
+    0%, 100% { transform: scale(1) rotate(45deg); }
+    50% { transform: scale(1.3) rotate(45deg); }
+}
+
+/* New Hearts Section (green and purple) */
+.hearts-section {
+    text-align: center;
+    width: 100%; /* Allow more width for spreading */
+    max-width: 1000px; /* Max width for the section */
+    padding: 30px 20px; /* More padding */
+    background-color: transparent; /* Make background transparent as per image */
+    border-radius: 10px; /* Keep if you want rounded corners on the "conceptual" section */
+    position: absolute; /* Position it absolutely to control its placement */
+    top: 75vh; /* POSITION IT LOWER - 75% da altura da viewport */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 5; /* Ensure it's above other elements */
+    min-height: 350px; /* AUMENTADO: Mais altura para os corações se espalharem verticalmente */
+    padding-bottom: 20px; /* Espaçamento inferior dentro da seção */
+}
+
+.hearts-title {
+    color: white;
+    font-family: sans-serif;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.hearts-grid {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+}
+
+
+.clickable-heart {
+    position: absolute; /* Absolutely position each heart within hearts-grid */
+    width: 60px;
+    height: 60px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.clickable-heart:hover {
+    transform: scale(1.1) rotate(45deg);
+}
+
+.clickable-heart::before,
+.clickable-heart::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.clickable-heart::before {
+    top: -30px;
+    left: 0;
+}
+
+.clickable-heart::after {
+    left: -30px;
+    top: 0;
+}
+
+/* Specific positioning for each clickable heart - RE-ADJUSTED BASED ON REFERENCE IMAGE */
+/* ESTES VALORES SÃO ESTIMATIVAS PARA REPLICAR A IMAGEM E PODEM PRECISAR DE AJUSTE FINO NA SUA TELA */
+#heart1 { top: 3%; left: -20%; }      /* verde */
+#heart2 { top: 40%; left: 5%; }    /* roxo */
+#heart3 { top: 40%; left: 45%; }    /* verde */
+#heart4 { top: 10%; left: 45%; }    /* roxo */
+#heart5 { top: 70%; left: 45%; }    /* verde */
+#heart6 { top: 75%; left: -20%; }    /* roxo */
+#heart7 { top: 40%; left: 85%; }    /* roxo */
+#heart8 { top: 3%; left: 100%; }    /* verde */
+#heart9 { top: 75%; left: 100%; }    /* verde */
+
+
+
+/* Colors for clickable hearts */
+.green-heart {
+    background-color: #00FF7F;
+}
+
+.green-heart::before,
+.green-heart::after {
+    background-color: #00FF7F;
+}
+
+.purple-heart {
+    background-color: #8A2BE2;
+}
+
+.purple-heart::before,
+.purple-heart::after {
+    background-color: #8A2BE2;
+}
+
+/* Pop-up styles (no changes needed) */
+.heart-popup {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none; /* Hidden by default, controlled by JS */
+}
+
+.heart-popup-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#popup-message {
+    font-size: 1.5em;
+    color: #333;
+    font-family: sans-serif;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.close-button {
+    color: #aaa;
+    /* float: right; REMOVE: float não é ideal para posicionamento absoluto */
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute; /* Usar position absolute para controle preciso */
+    top: 10px; /* Ajuste conforme necessário */
+    right: 15px; /* Ajuste conforme necessário */
+    cursor: pointer;
+    background: none; /* Garante que não tenha fundo */
+    border: none; /* Remove a borda padrão do botão */
+    padding: 0; /* Remove padding padrão do botão */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Quiz Intro Section */
+.quiz-intro-section {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, #000000, #8B0000); /* preto para vermelho escuro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    position: relative; /* Position it over the other content */
+    top: 50vh;
+    left: 0;
+}
+
+.quiz-intro-section h1 {
+    font-size: 4em;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.quiz-intro-section button {
+    background-color: #a32323;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.quiz-intro-section button:hover {
+    background-color: #cc3d3d;
+}
+
+/* Quiz Questions Section (the white rectangle) */
+.quiz-questions-section {
+    position: fixed; /* Fixed to cover the whole screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    z-index: 20; /* Higher z-index to be on top of everything */
+     display: none;
+}
+
+.quiz-container {
+    background-color: white; /* White background for the rectangle */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    color: #333; /* Darker text for readability on white */
+    font-family: sans-serif;
+    position: relative;
+}
+
+.quiz-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.option-button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    text-align: left; /* Align options to the left */
+}
+
+.option-button:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+}
+
+.option-button.correct {
+    background-color: #d4edda; /* Light green for correct */
+    border-color: #28a745; /* Green border */
+    color: #155724; /* Darker green text */
+}
+
+.option-button.wrong {
+    background-color: #f8d7da; /* Light red for wrong */
+    border-color: #dc3545; /* Red border */
+    color: #721c24; /* Darker red text */
+}
+
+.feedback-message {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.next-button {
+    background-color: #a32323;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background-color: #cc3d3d;
 }

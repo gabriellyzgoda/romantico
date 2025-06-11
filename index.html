@@ -1,36 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gaby&João</title>
-  <link rel="stylesheet" href="estilo.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gaby&João</title>
+    <link rel="stylesheet" href="estilo.css" />
 </head>
 <body>
-      <div class="fundo">
-    <span class="coracao" style="top: 10%; left: 5%;"></span>
-    <span class="coracao" style="top: 20%; left: 25%; animation-delay: 2s;"></span>
-    <span class="coracao" style="top: 5%; left: 50%; animation-delay: 1s;"></span>
-    <span class="coracao" style="top: 15%; left: 75%; animation-delay: 3s;"></span>
-    <span class="coracao" style="top: 25%; left: 90%; animation-delay: 0.5s;"></span>
+    <div class="fundo">
+        <span class="coracao" style="top: 10%; left: 5%;"></span>
+        <span class="coracao" style="top: 20%; left: 25%; animation-delay: 2s;"></span>
+        <span class="coracao" style="top: 5%; left: 50%; animation-delay: 1s;"></span>
+        <span class="coracao" style="top: 15%; left: 75%; animation-delay: 3s;"></span>
+        <span class="coracao" style="top: 25%; left: 90%; animation-delay: 0.5s;"></span>
 
-    <div class="linha-central"></div>
-  <div class="carrossel-container">
-    <div class="carrossel">
-      <img src="img/Junho.jpeg" alt="Imagem 1" />
-      <img src="img/Julho.jpeg" alt="Imagem 2" />
-      <img src="img/Agosto.jpeg" alt="Imagem 3" />
-      <img src="img/Setembro.jpeg" alt="Imagem 1" />
-      <img src="img/Outubro.jpeg" alt="Imagem 2" />
-      <img src="img/Novembro.jpeg" alt="Imagem 3" />
-      <img src="img/Dezembro.jpeg" alt="Imagem 1" />
-      <img src="img/Janeiro.jpeg" alt="Imagem 2" />
-      <img src="img/Fevereiro.jpeg" alt="Imagem 3" />
-      <img src="img/Março.jpeg" alt="Imagem 1" />
-      <img src="img/Abril.jpeg" alt="Imagem 2" />
-      <img src="img/Maio.jpeg" alt="Imagem 3" />
+        <div class="linha-central"></div>
+        <div class="carrossel-container">
+            <div class="carrossel">
+                <img src="img/Junho.jpeg" alt="Imagem 1" />
+                <img src="img/Julho.jpeg" alt="Imagem 2" />
+                <img src="img/Agosto.jpeg" alt="Imagem 3" />
+                <img src="img/Setembro.jpeg" alt="Imagem 1" />
+                <img src="img/Outubro.jpeg" alt="Imagem 2" />
+                <img src="img/Novembro.jpeg" alt="Imagem 3" />
+                <img src="img/Dezembro.jpeg" alt="Imagem 1" />
+                <img src="img/Janeiro.jpeg" alt="Imagem 2" />
+                <img src="img/Fevereiro.jpeg" alt="Imagem 3" />
+                <img src="img/Março.jpeg" alt="Imagem 1" />
+                <img src="img/Abril.jpeg" alt="Imagem 2" />
+                <img src="img/Maio.jpeg" alt="Imagem 3" />
+            </div>
+        </div>
+
+        <div class="hearts-section">
+            <h2 class="hearts-title">Clique nos corações!</h2>
+            <div class="hearts-grid">
+                <div id="heart1" class="clickable-heart green-heart" data-message="Você é especial para mim!"></div>
+                <div id="heart2" class="clickable-heart purple-heart" data-message="Eu amo você!"></div>
+                <div id="heart3" class="clickable-heart green-heart" data-message="Você alegra meus dias."></div>
+                <div id="heart4" class="clickable-heart purple-heart" data-message="Obrigada por ser especial comigo!"></div>
+                <div id="heart5" class="clickable-heart purple-heart" data-message="Cada momento com você é único."></div>
+                <div id="heart6" class="clickable-heart green-heart" data-message="Você me faz me sentir amada ao seu lado"></div>
+                <div id="heart7" class="clickable-heart purple-heart" data-message="Nosso amor é lindo."></div>
+                <div id="heart8" class="clickable-heart green-heart" data-message="Para sempre meu lindão."></div>
+                <div id="heart9" class="clickable-heart green-heart" data-message="Para sempre meu lindão."></div>
+            </div>
+        </div>
+        <div id="heart-popup" class="heart-popup">
+            <div class="heart-popup-content">
+                <span class="close-button">&times;</span>
+                <p id="popup-message"></p>
+            </div>
+        </div>
     </div>
-  </div>
-  </div>
+    
+    <section class="quiz-section quiz-intro-section">
+        <h1>Quiz do amor</h1>
+        <button onclick="iniciarQuiz()">Começar</button>
+    </section>
+    
+    <section class="quiz-questions-section" id="quizQuestions">
+        <div class="quiz-container">
+            <button id="closeQuizBtn" class="close-button" style="top: 10px; right: 15px;">&times;</button> 
+            <h2 id="questionText"></h2>
+            <div class="options-container">
+                <button class="option-button" data-option="a"></button>
+                <button class="option-button" data-option="b"></button>
+                <button class="option-button" data-option="c"></button>
+                <button class="option-button" data-option="d"></button>
+            </div>
+            <p id="feedback" class="feedback-message"></p>
+            <button id="nextQuestionBtn" class="next-button" style="display: none;">Próxima Pergunta</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
