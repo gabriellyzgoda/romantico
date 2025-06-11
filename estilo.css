@@ -2,30 +2,29 @@ body {
     margin: 0;
     background-color: black;
     height: 100vh;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    position: relative; /* Make body a positioning context for absolute elements */
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* Ensure the main container 'fundo' allows content to flow */
 .fundo {
     width: 100%;
-    min-height: 100vh; /* Ensure it covers the whole viewport */
-    position: relative; /* Important for containing absolutely positioned children */
-    display: flex; /* Use flexbox for overall layout */
-    flex-direction: column; /* Stack children vertically */
-    justify-content: flex-start; /* Alinha no topo para dar espaço para o carrossel e depois a seção de corações */
-    align-items: center; /* Center content horizontally */
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-/* Corações de fundo (red) - Positioned relative to .fundo */
+/* Corações de fundo (red) */
 .coracao {
-    position: absolute; /* Absolute positioning */
+    position: absolute;
     width: 20px;
     height: 20px;
     background-color: red;
     transform: rotate(45deg);
     animation: pulse 2s infinite;
-    z-index: 0; /* Keep them in the background */
+    z-index: 0;
 }
 
 .coracao::before,
@@ -49,100 +48,100 @@ body {
 }
 
 .linha-central {
-    position: absolute; /* Positioned relative to .fundo */
-    top: 50%; /* Center vertically on the page */
+    position: absolute;
+    top: 50%;
     left: 0;
     width: 100%;
     height: 2px;
     background-color: white;
-    transform: translateY(-50%); /* Adjust for its own height */
+    transform: translateY(-50%);
     z-index: 1;
 }
 
+/* Carrossel responsivo */
 .carrossel-container {
-    position: absolute; /* Positioned relative to .fundo */
-    z-index: 2; /* Ensure it's above the line and background hearts */
-    width: 600px;
-    height: 400px;
+    position: absolute;
+    z-index: 2;
+    width: 90%;
+    max-width: 600px;
+    height: 250px;
     overflow: hidden;
-    border: 10px solid white;
+    border: 5px solid white;
     box-sizing: border-box;
-    top: 50%; /* Center vertically with the line */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for its own dimensions */
-    /* Remove margin-bottom here, position will handle spacing */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .carrossel {
     display: flex;
-    width: calc(600px * 12);
+    width: calc(100% * 12);
     animation: deslizar 36s infinite;
 }
 
 .carrossel img {
-    width: 600px;
-    height: 400px;
+    width: 100%;
+    height: 250px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
-/* Carrossel animation */
+/* Animação do carrossel ajustada */
 @keyframes deslizar {
     0% { transform: translateX(0); }
-    8.33% { transform: translateX(-600px); }
-    16.66% { transform: translateX(-1200px); }
-    25% { transform: translateX(-1800px); }
-    33.33% { transform: translateX(-2400px); }
-    41.66% { transform: translateX(-3000px); }
-    50% { transform: translateX(-3600px); }
-    58.33% { transform: translateX(-4200px); }
-    66.66% { transform: translateX(-4800px); }
-    75% { transform: translateX(-5400px); }
-    83.33% { transform: translateX(-6000px); }
-    91.66% { transform: translateX(-6600px); }
+    8.33% { transform: translateX(-100%); }
+    16.66% { transform: translateX(-200%); }
+    25% { transform: translateX(-300%); }
+    33.33% { transform: translateX(-400%); }
+    41.66% { transform: translateX(-500%); }
+    50% { transform: translateX(-600%); }
+    58.33% { transform: translateX(-700%); }
+    66.66% { transform: translateX(-800%); }
+    75% { transform: translateX(-900%); }
+    83.33% { transform: translateX(-1000%); }
+    91.66% { transform: translateX(-1100%); }
     100% { transform: translateX(0); }
 }
 
-/* Animation for background hearts */
 @keyframes pulse {
     0%, 100% { transform: scale(1) rotate(45deg); }
     50% { transform: scale(1.3) rotate(45deg); }
 }
 
-/* New Hearts Section (green and purple) */
+/* Seção de corações clicáveis - responsiva */
 .hearts-section {
     text-align: center;
-    width: 100%; /* Allow more width for spreading */
-    max-width: 1000px; /* Max width for the section */
-    padding: 30px 20px; /* More padding */
-    background-color: transparent; /* Make background transparent as per image */
-    border-radius: 10px; /* Keep if you want rounded corners on the "conceptual" section */
-    position: absolute; /* Position it absolutely to control its placement */
-    top: 75vh; /* POSITION IT LOWER - 75% da altura da viewport */
+    width: 100%;
+    max-width: 100vw;
+    padding: 20px 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    position: absolute;
+    top: 70vh;
     left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
-    z-index: 5; /* Ensure it's above other elements */
-    min-height: 350px; /* AUMENTADO: Mais altura para os corações se espalharem verticalmente */
-    padding-bottom: 20px; /* Espaçamento inferior dentro da seção */
+    transform: translateX(-50%);
+    z-index: 5;
+    min-height: 300px;
 }
 
 .hearts-title {
     color: white;
     font-family: sans-serif;
-    font-size: 2em;
-    margin-bottom: 30px;
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
 .hearts-grid {
-  position: relative;
-  width: 100%;
-  height: 80vh;
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    min-height: 300px;
 }
 
-
 .clickable-heart {
-    position: absolute; /* Absolutely position each heart within hearts-grid */
-    width: 60px;
-    height: 60px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
     transform: rotate(45deg);
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
@@ -156,36 +155,32 @@ body {
 .clickable-heart::after {
     content: "";
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
 .clickable-heart::before {
-    top: -30px;
+    top: -20px;
     left: 0;
 }
 
 .clickable-heart::after {
-    left: -30px;
+    left: -20px;
     top: 0;
 }
 
-/* Specific positioning for each clickable heart - RE-ADJUSTED BASED ON REFERENCE IMAGE */
-/* ESTES VALORES SÃO ESTIMATIVAS PARA REPLICAR A IMAGEM E PODEM PRECISAR DE AJUSTE FINO NA SUA TELA */
-#heart1 { top: 3%; left: -20%; }      /* verde */
-#heart2 { top: 40%; left: 5%; }    /* roxo */
-#heart3 { top: 40%; left: 45%; }    /* verde */
-#heart4 { top: 10%; left: 45%; }    /* roxo */
-#heart5 { top: 70%; left: 45%; }    /* verde */
-#heart6 { top: 75%; left: -20%; }    /* roxo */
-#heart7 { top: 40%; left: 85%; }    /* roxo */
-#heart8 { top: 3%; left: 100%; }    /* verde */
-#heart9 { top: 75%; left: 100%; }    /* verde */
+/* Posicionamento dos corações para mobile */
+#heart1 { top: 5%; left: 10%; }
+#heart2 { top: 25%; left: 70%; }
+#heart3 { top: 45%; left: 20%; }
+#heart4 { top: 15%; left: 60%; }
+#heart5 { top: 65%; left: 75%; }
+#heart6 { top: 75%; left: 15%; }
+#heart7 { top: 35%; left: 80%; }
+#heart8 { top: 5%; left: 85%; }
+#heart9 { top: 85%; left: 50%; }
 
-
-
-/* Colors for clickable hearts */
 .green-heart {
     background-color: #00FF7F;
 }
@@ -204,7 +199,7 @@ body {
     background-color: #8A2BE2;
 }
 
-/* Pop-up styles (no changes needed) */
+/* Pop-up responsivo */
 .heart-popup {
     position: fixed;
     z-index: 100;
@@ -217,16 +212,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none; /* Hidden by default, controlled by JS */
+    display: none;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .heart-popup-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 30px;
+    padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 350px;
     text-align: center;
     border-radius: 10px;
     position: relative;
@@ -235,13 +232,15 @@ body {
 
 .close-button {
     color: #aaa;
-    float: right;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 8px;
+    right: 12px;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .close-button:hover,
@@ -252,7 +251,7 @@ body {
 }
 
 #popup-message {
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #333;
     font-family: sans-serif;
 }
@@ -261,31 +260,12 @@ body {
     from {opacity: 0;}
     to {opacity: 1;}
 }
-.close-button {
-    color: #aaa;
-    /* float: right; REMOVE: float não é ideal para posicionamento absoluto */
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute; /* Usar position absolute para controle preciso */
-    top: 10px; /* Ajuste conforme necessário */
-    right: 15px; /* Ajuste conforme necessário */
-    cursor: pointer;
-    background: none; /* Garante que não tenha fundo */
-    border: none; /* Remove a borda padrão do botão */
-    padding: 0; /* Remove padding padrão do botão */
-}
 
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-/* Quiz Intro Section */
+/* Quiz Intro Section - responsiva */
 .quiz-intro-section {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to bottom, #000000, #8B0000); /* preto para vermelho escuro */
+    background: linear-gradient(to bottom, #000000, #8B0000);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -293,24 +273,26 @@ body {
     color: white;
     font-family: sans-serif;
     text-align: center;
-    position: relative; /* Position it over the other content */
+    position: relative;
     top: 50vh;
     left: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .quiz-intro-section h1 {
-    font-size: 4em;
-    margin-bottom: 40px;
+    font-size: 2.5em;
+    margin-bottom: 30px;
     font-weight: bold;
 }
 
 .quiz-intro-section button {
     background-color: #a32323;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     border: none;
-    padding: 15px 40px;
-    border-radius: 30px;
+    padding: 12px 30px;
+    border-radius: 25px;
     cursor: pointer;
     transition: background 0.3s ease;
 }
@@ -319,9 +301,9 @@ body {
     background-color: #cc3d3d;
 }
 
-/* Quiz Questions Section (the white rectangle) */
+/* Quiz Questions Section - responsiva */
 .quiz-questions-section {
-    position: fixed; /* Fixed to cover the whole screen */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -329,47 +311,51 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-    z-index: 20; /* Higher z-index to be on top of everything */
-     display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+    display: none;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .quiz-container {
-    background-color: white; /* White background for the rectangle */
-    padding: 40px;
+    background-color: white;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     text-align: center;
-    max-width: 600px;
-    width: 90%;
-    color: #333; /* Darker text for readability on white */
+    max-width: 500px;
+    width: 95%;
+    color: #333;
     font-family: sans-serif;
     position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .quiz-container h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 1.5em;
+    margin-bottom: 15px;
     color: #333;
 }
 
 .options-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
 .option-button {
     background-color: #f0f0f0;
     color: #333;
     border: 1px solid #ddd;
-    padding: 10px 15px;
+    padding: 12px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1em;
     transition: background-color 0.2s ease, border-color 0.2s ease;
-    text-align: left; /* Align options to the left */
+    text-align: left;
 }
 
 .option-button:hover {
@@ -378,35 +364,163 @@ body {
 }
 
 .option-button.correct {
-    background-color: #d4edda; /* Light green for correct */
-    border-color: #28a745; /* Green border */
-    color: #155724; /* Darker green text */
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
 }
 
 .option-button.wrong {
-    background-color: #f8d7da; /* Light red for wrong */
-    border-color: #dc3545; /* Red border */
-    color: #721c24; /* Darker red text */
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
 }
 
 .feedback-message {
-    margin-top: 15px;
+    margin-top: 12px;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .next-button {
     background-color: #a32323;
     color: white;
-    font-size: 1.1em;
+    font-size: 1em;
     border: none;
-    padding: 10px 25px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s ease;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .next-button:hover {
     background-color: #cc3d3d;
+}
+
+/* Media Queries para diferentes tamanhos de tela */
+@media (max-width: 480px) {
+    .carrossel-container {
+        width: 95%;
+        height: 200px;
+        border: 3px solid white;
+    }
+    
+    .carrossel img {
+        height: 200px;
+    }
+    
+    .hearts-title {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    .clickable-heart {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .clickable-heart::before,
+    .clickable-heart::after {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .clickable-heart::before {
+        top: -17.5px;
+    }
+    
+    .clickable-heart::after {
+        left: -17.5px;
+    }
+    
+    .quiz-intro-section h1 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+    
+    .quiz-intro-section button {
+        font-size: 1em;
+        padding: 10px 25px;
+    }
+    
+    .quiz-container {
+        padding: 20px;
+        width: 98%;
+    }
+    
+    .quiz-container h2 {
+        font-size: 1.3em;
+    }
+    
+    .option-button {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 320px) {
+    .carrossel-container {
+        height: 180px;
+    }
+    
+    .carrossel img {
+        height: 180px;
+    }
+    
+    .hearts-title {
+        font-size: 1.2em;
+    }
+    
+    .clickable-heart {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .clickable-heart::before,
+    .clickable-heart::after {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .clickable-heart::before {
+        top: -15px;
+    }
+    
+    .clickable-heart::after {
+        left: -15px;
+    }
+    
+    .quiz-intro-section h1 {
+        font-size: 1.8em;
+    }
+    
+    .quiz-container {
+        padding: 15px;
+    }
+}
+
+/* Orientação landscape para celulares */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hearts-section {
+        top: 60vh;
+        min-height: 200px;
+    }
+    
+    .hearts-grid {
+        height: 35vh;
+        min-height: 200px;
+    }
+    
+    .quiz-intro-section h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    
+    .carrossel-container {
+        height: 150px;
+    }
+    
+    .carrossel img {
+        height: 150px;
+    }
 }
